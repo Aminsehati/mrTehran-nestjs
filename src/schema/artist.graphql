@@ -1,0 +1,21 @@
+type Artist {
+    _id: String,
+    name:String ,
+    imgUrl:String,
+    coverImgUrl:String ,
+    Followers : Int
+}
+type Query {
+    getArtists : [Artist]
+    getArtist(id:ID!) : Artist 
+    getArtistsCount : Int!
+}
+input createActorInput {
+    name: String , 
+    imgUrl: String ,
+    coverImgUrl : String
+
+}
+type Mutation {
+    createActor(input:createActorInput): Artist
+}

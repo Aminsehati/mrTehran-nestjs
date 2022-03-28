@@ -1,0 +1,32 @@
+type Query {
+    getPlayLists(pagination : Pagination ) : [ PlayList ] 
+    getPlayList (id:ID!) : PlayList
+    getPlayListsCount : Int!
+}
+input Pagination {
+    limit: Int , 
+    skip: Int 
+}
+type PlayList {
+    _id : String
+    name: String,
+    imgUrl: String ,
+    coverImgUrl: String , 
+    Followers : Int
+}
+input updatePlayListInput {
+    name: String ! ,
+    imgUrl:String! ,
+    coverImgUrl:String!
+}
+input createPlayList {
+    name: String ,
+    imgUrl: String ,
+    coverImgUrl: String
+}
+type Mutation {
+    createPlayList(input: createPlayList) :PlayList
+    updatePlayList (id:ID! , input : updatePlayListInput!) : PlayList 
+    deletePlayList(id:ID!) : PlayList,
+    FollowPlayList(id:ID!): PlayList
+}
