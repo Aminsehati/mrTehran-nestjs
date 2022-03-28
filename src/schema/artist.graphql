@@ -23,5 +23,6 @@ input updateArtistInput {
 type Mutation {
     createArtist(input: createArtistInput!): Artist
     updateArtist(id:ID! ,input : updateArtistInput!) :Artist
-    deleteArtist(id:ID!) : Artist
+    deleteArtist(id:ID!) : Artist ,
+    FollowArtist(id:ID!) : Artist 
 }

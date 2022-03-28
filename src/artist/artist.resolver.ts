@@ -55,4 +55,12 @@ export class ArtistResolver {
             console.log(error);
         }
     }
+    @Mutation(()=>Artist)
+    async FollowArtist(@Args('id') id:string){
+        try {
+            return this.artistService.FollowArtist(id)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

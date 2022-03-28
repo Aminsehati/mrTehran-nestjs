@@ -30,4 +30,11 @@ export class ArtistService {
     async deleteArtist(id: string) {
         return await this.artistModel.findOneAndDelete({ _id: id });
     }
+    async FollowArtist(id: string) {
+        return await this.artistModel.findOneAndUpdate({ _id: id }, {
+            $inc: {
+                Followers: 1
+            }
+        }, { new: true })
+    }
 }
