@@ -2,9 +2,9 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PlayList } from './interface/playList.interface';
-import { createPlayList } from './input/createPlayList.input'
-import { updatePlayList } from './input/updatePlayList';
-import { Pagination } from './input/pagination.input';
+import { createPlayList } from '../input/createPlayList.input'
+import { updatePlayList } from '../input/updatePlayList';
+import { Pagination } from '../input/pagination.input';
 @Injectable()
 export class PlayListService {
     constructor(@InjectModel('playlists') private readonly playListModel: Model<PlayList>) { }

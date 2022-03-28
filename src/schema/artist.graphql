@@ -6,16 +6,22 @@ type Artist {
     Followers : Int
 }
 type Query {
-    getArtists : [Artist]
+    getArtists(pagination : Pagination ) : [Artist]
     getArtist(id:ID!) : Artist 
     getArtistsCount : Int!
 }
-input createActorInput {
+input createArtistInput {
     name: String , 
     imgUrl: String ,
     coverImgUrl : String
-
+}
+input updateArtistInput {
+    name: String , 
+    imgUrl: String ,
+    coverImgUrl : String
 }
 type Mutation {
-    createActor(input:createActorInput): Artist
+    createArtist(input: createArtistInput!): Artist
+    updateArtist(id:ID! ,input : updateArtistInput!) :Artist
+    deleteArtist(id:ID!) : Artist
 }
