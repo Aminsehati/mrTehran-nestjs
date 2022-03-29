@@ -1,0 +1,8 @@
+scalar Upload 
+type Mutation {
+    uploadImage(file: Upload): FileItem,
+    uploadAudio(file: Upload): FileItem
+}
+type FileItem {
+    url: String,
+}
