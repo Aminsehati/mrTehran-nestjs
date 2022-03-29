@@ -1,9 +1,9 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { createArtist } from 'src/input/createArtist.input';
+import { createArtist } from 'src/artist/input/createArtist.input';
 import { Pagination } from 'src/input/pagination.input';
 import { ArtistService } from './artist.service'
 import { Artist } from './dto/artist.dto'
-import { updateArtist } from '../input/updateArtist';
+import { updateArtist } from './input/updateArtist';
 @Resolver()
 export class ArtistResolver {
     constructor(private readonly artistService: ArtistService) { }

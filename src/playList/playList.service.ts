@@ -2,8 +2,8 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PlayList } from './interface/playList.interface';
-import { createPlayList } from '../input/createPlayList.input'
-import { updatePlayList } from '../input/updatePlayList';
+import { createPlayList } from './input/createPlayList.input'
+import { updatePlayList } from './input/updatePlayList';
 import { Pagination } from '../input/pagination.input';
 @Injectable()
 export class PlayListService {
@@ -13,7 +13,7 @@ export class PlayListService {
             limit: pagination?.limit || 20,
             skip: pagination?.skip || 1
         }
-        return this.playListModel.find().limit(paginationItem.limit).skip((paginationItem.skip - 1) * (paginationItem.limit));
+        return await this.playListModel.find().limit(paginationItem.limit).skip((paginationItem.skip - 1) * (paginationItem.limit));
     }
     async getPlayList(id: string): Promise<PlayList> {
         return this.playListModel.findOne({ _id: id });

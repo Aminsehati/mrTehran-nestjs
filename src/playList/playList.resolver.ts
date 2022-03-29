@@ -1,8 +1,8 @@
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
 import { PlayListService } from './playList.service'
 import { PlayList } from './dto/playList.dto';
-import { createPlayList } from '../input/createPlayList.input'
-import { updatePlayList } from "../input/updatePlayList";
+import { createPlayList } from './input/createPlayList.input'
+import { updatePlayList } from "./input/updatePlayList";
 import { Pagination } from '../input/pagination.input';
 @Resolver()
 export class PlayListResolver {

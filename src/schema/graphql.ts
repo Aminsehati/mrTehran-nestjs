@@ -5,7 +5,7 @@
  * -------------------------------------------------------
  */
 
-import { createPlayList } from "src/input/createPlayList.input";
+import { createPlayList } from "src/playList/input/createPlayList.input";
 
 /* tslint:disable */
 /* eslint-disable */

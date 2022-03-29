@@ -4,5 +4,7 @@ export interface PlayList extends Document {
     readonly name: string,
     readonly imgUrl: string,
     readonly coverImgUrl: string,
-    readonly Followers: number
+    readonly Followers: number,
+    readonly createdAt: string,
+    readonly updatedAt: string,
 }

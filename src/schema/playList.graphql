@@ -3,6 +3,7 @@ type Query {
     getPlayList (id:ID!) : PlayList
     getPlayListsCount : Int!
 }
+scalar DateTime
 input Pagination {
     limit: Int , 
     skip: Int 
@@ -12,7 +13,9 @@ type PlayList {
     name: String,
     imgUrl: String ,
     coverImgUrl: String , 
-    Followers : Int
+    Followers : Int ,
+    createdAt:DateTime,
+    updatedAt:DateTime,
 }
 input updatePlayListInput {
     name: String ! ,

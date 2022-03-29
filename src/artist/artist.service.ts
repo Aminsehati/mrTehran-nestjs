@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Pagination } from 'src/input/pagination.input';
 import { Artist } from './interface/artist.interface'
-import { createArtist } from '../input/createArtist.input';
-import { updateArtist } from '../input/updateArtist';
+import { createArtist } from './input/createArtist.input';
+import { updateArtist } from './input/updateArtist';
 @Injectable()
 export class ArtistService {
     constructor(@InjectModel('artists') private readonly artistModel: Model<Artist>) { }
