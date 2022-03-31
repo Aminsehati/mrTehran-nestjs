@@ -1,0 +1,31 @@
+type Query {
+    getTracks : [Track]
+}
+type Track {
+    _id: String ,
+    imgUrl: String ,
+    audioUrl: String ,
+    trackName: String ,
+    view: Int ,
+    like: Int ,
+    artists: [Artist]
+}
+input createTrackInput {
+    imgUrl: String! ,
+    audioUrl: String! ,
+    trackName: String! ,
+    artists:[ID!]
+}
+input updateTrackInput {
+    imgUrl: String! ,
+    audioUrl: String! ,
+    trackName: String! ,
+    view: Int! ,
+    like:Int! ,
+    artists:[ID!]
+}
+type Mutation {
+    createTrack(input : createTrackInput!) : Track ,
+    updateTrack(input : updateTrackInput) : Track ,
+    deleteTrack(id:ID!): Track 
+}
