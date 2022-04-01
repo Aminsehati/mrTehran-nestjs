@@ -5,18 +5,32 @@ import { Track } from './interface/track.interface'
 import { createTrack } from "./input/createTrack.input";
 import { Artist } from '../artist/interface/artist.interface'
 import { Pagination } from '../schema/graphql';
+import { sortTrack } from './input/sortTrack.input';
 @Injectable()
 export class TrackService {
     constructor(@InjectModel('tracks') private readonly trackModel: Model<Track>, @InjectModel('artists') private readonly artistModel: Model<Artist>) { }
-    async getTracks(pagination: Pagination): Promise<Track[]> {
+    async getTracks(pagination: Pagination, sort: sortTrack): Promise<Track[]> {
         const paginationitem = {
             limit: pagination?.limit || 20,
             skip: pagination?.skip || 1
         }
-        return await this.trackModel.find().limit(paginationitem.limit).skip((pagination.limit) * (pagination.skip - 1));
+        const sortItem = {
+            trackName: sort?.trackName,
+            like: sort?.like,
+            view: sort?.view,
+            updatedAt: sort?.updatedAt,
+            createdAt: sort?.createdAt
+        }
+        return await this.trackModel.find().limit(paginationitem.limit).skip((paginationitem.limit) * (paginationitem.skip - 1)).sort(sortItem);
+    }
+    async getTracksCount(): Promise<number> {
+        return await this.trackModel.find().count();
+    }
+    async getTrack(id: string): Promise<Track> {
+        return await this.trackModel.findOne({ _id: id });
     }
     async deleteTrack(id: string): Promise<Track> {
-        return this.trackModel.findOneAndDelete({ _id: id });
+        return await this.trackModel.findOneAndDelete({ _id: id });
     }
     async createTrack(input: createTrack) {
         const artistItems = await this.artistModel.find({ _id: input.artists });
@@ -27,5 +41,22 @@ export class TrackService {
             artists: artistItems
         })
     }
-
+    async likeTrack(id: string) {
+        return this.trackModel.findOneAndUpdate({ _id: id }, {
+            $inc: {
+                like: 1
+            }
+        }, {
+            new: true
+        })
+    }
+    async viewTrack(id: string): Promise<Track> {
+        return this.trackModel.findOneAndUpdate({ _id: id }, {
+            $inc: {
+                view: 1
+            }
+        }, {
+            new: true
+        })
+    }
 }

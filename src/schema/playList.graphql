@@ -29,8 +29,6 @@ input createPlayList {
 }
 input sortPlayList {
     name: Int ,
-    imgUrl: Int ,
-    coverImgUrl: Int ,
     Followers: Int ,
     createdAt: Int , 
     updatedAt:Int 

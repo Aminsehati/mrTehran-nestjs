@@ -1,5 +1,8 @@
+ scalar DateTime
 type Query {
-    getTracks(pagination:Pagination) : [Track]
+    getTracks(pagination:Pagination , sort: sortTrack) : [Track]
+    getTrack(id:ID!) : Track
+    getTracksCount:Int!
 }
 type Track {
     _id: String ,
@@ -8,7 +11,9 @@ type Track {
     trackName: String ,
     view: Int ,
     like: Int ,
-    artists: [Artist]
+    artists: [Artist],
+    createdAt:DateTime,
+    updatedAt:DateTime,
 }
 input createTrackInput {
     imgUrl: String! ,
@@ -24,8 +29,17 @@ input updateTrackInput {
     like:Int! ,
     artists:[ID!]
 }
+input sortTrack {
+    trackName: Int ,
+    view: Int ,
+    like: Int ,
+    createdAt: Int,
+    updatedAt: Int,
+}
 type Mutation {
     createTrack(input : createTrackInput!) : Track ,
     updateTrack(input : updateTrackInput) : Track ,
-    deleteTrack(id:ID!): Track 
+    deleteTrack(id:ID!): Track , 
+    likeTrack(id:ID!): Track ,
+    viewTrack(id:ID!): Track ,
 }

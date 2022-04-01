@@ -16,8 +16,6 @@ export class PlayListService {
         }
         const sortItem = {
             name: sort?.name,
-            imgUrl: sort?.imgUrl,
-            sscoverImgUrl: sort?.coverImgUrl,
             Followers: sort?.Followers,
             createdAt: sort?.createdAt,
             updatedAt: sort?.updatedAt

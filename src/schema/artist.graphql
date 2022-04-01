@@ -10,8 +10,6 @@ type Artist {
 }
 input sortArtists {
     name: Int ,
-    imgUrl: Int ,
-    coverImgUrl: Int ,
     Followers: Int ,
     updatedAt: Int ,
     createdAt: Int 
