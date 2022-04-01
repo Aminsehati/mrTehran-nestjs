@@ -1,5 +1,5 @@
 type Query {
-    getPlayLists(pagination : Pagination ) : [ PlayList ] 
+    getPlayLists(pagination : Pagination  , sort : sortPlayList) : [ PlayList ] 
     getPlayList (id:ID!) : PlayList
     getPlayListsCount : Int!
 }
@@ -26,6 +26,15 @@ input createPlayList {
     name: String ,
     imgUrl: String ,
     coverImgUrl: String
+}
+input sortPlayList {
+    name: Int ,
+    imgUrl: Int ,
+    coverImgUrl: Int ,
+    Followers: Int ,
+    createdAt: Int , 
+    updatedAt:Int 
+
 }
 type Mutation {
     createPlayList(input: createPlayList) :PlayList

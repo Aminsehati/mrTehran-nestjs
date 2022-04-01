@@ -2,20 +2,21 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { TrackService } from './track.service'
 import { track } from './dto/track.dto'
 import { createTrack } from './input/createTrack.input';
+import { Pagination } from '../schema/graphql';
 @Resolver()
 export class trackResolver {
     constructor(private readonly trackService: TrackService) { }
     @Query(() => [track])
-    getTracks() {
+    getTracks(@Args('pagination') pagination: Pagination) {
         try {
-            return this.trackService.getTracks();
+            return this.trackService.getTracks(pagination);
         } catch (error) {
             console.log('error', error);
         }
     }
 
     @Mutation(() => track)
-    createTrack(@Args('input') input:createTrack) {
+    createTrack(@Args('input') input: createTrack) {
         try {
             return this.trackService.createTrack(input);
         } catch (error) {

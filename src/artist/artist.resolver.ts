@@ -3,14 +3,15 @@ import { createArtist } from 'src/artist/input/createArtist.input';
 import { Pagination } from 'src/input/pagination.input';
 import { ArtistService } from './artist.service'
 import { Artist } from './dto/artist.dto'
+import { sortArtists } from './input/sortActors.input';
 import { updateArtist } from './input/updateArtist';
 @Resolver()
 export class ArtistResolver {
     constructor(private readonly artistService: ArtistService) { }
     @Query(() => [Artist])
-    async getArtists(@Args('pagination') pagination: Pagination) {
+    async getArtists(@Args('pagination') pagination: Pagination, @Args('sort') sort: sortArtists) {
         try {
-            return this.artistService.getArtists(pagination);
+            return this.artistService.getArtists(pagination, sort);
         } catch (error) {
             console.log(error);
         }
@@ -55,8 +56,8 @@ export class ArtistResolver {
             console.log(error);
         }
     }
-    @Mutation(()=>Artist)
-    async FollowArtist(@Args('id') id:string){
+    @Mutation(() => Artist)
+    async FollowArtist(@Args('id') id: string) {
         try {
             return this.artistService.FollowArtist(id)
         } catch (error) {

@@ -2,15 +2,16 @@ import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
 import { PlayListService } from './playList.service'
 import { PlayList } from './dto/playList.dto';
 import { createPlayList } from './input/createPlayList.input'
-import { updatePlayList } from "./input/updatePlayList";
+import { updatePlayList } from "./input/updatePlayList.input";
 import { Pagination } from '../input/pagination.input';
+import { sortPlayList } from './input/sortPlayList.input';
 @Resolver()
 export class PlayListResolver {
     constructor(private readonly playListService: PlayListService) { }
     @Query(() => [PlayList])
-    getPlayLists(@Args('pagination') pagination: Pagination) {
+    getPlayLists(@Args('pagination') pagination: Pagination, @Args('sort') sort: sortPlayList) {
         try {
-            return this.playListService.getPlayLists(pagination)
+            return this.playListService.getPlayLists(pagination, sort);
         } catch (error) {
             console.log(error);
         }

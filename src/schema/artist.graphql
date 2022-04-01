@@ -1,12 +1,23 @@
+ scalar DateTime
 type Artist {
     _id: String,
     name:String ,
     imgUrl:String,
     coverImgUrl:String ,
-    Followers : Int
+    Followers : Int ,
+    createdAt:DateTime,
+    updatedAt:DateTime,
+}
+input sortArtists {
+    name: Int ,
+    imgUrl: Int ,
+    coverImgUrl: Int ,
+    Followers: Int ,
+    updatedAt: Int ,
+    createdAt: Int 
 }
 type Query {
-    getArtists(pagination : Pagination ) : [Artist]
+    getArtists(pagination : Pagination , sort: sortArtists) : [Artist]
     getArtist(id:ID!) : Artist 
     getArtistsCount : Int!
 }

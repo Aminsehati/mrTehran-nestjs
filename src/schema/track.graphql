@@ -1,5 +1,5 @@
 type Query {
-    getTracks : [Track]
+    getTracks(pagination:Pagination) : [Track]
 }
 type Track {
     _id: String ,

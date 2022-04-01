@@ -3,17 +3,26 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PlayList } from './interface/playList.interface';
 import { createPlayList } from './input/createPlayList.input'
-import { updatePlayList } from './input/updatePlayList';
+import { updatePlayList } from './input/updatePlayList.input';
 import { Pagination } from '../input/pagination.input';
+import { sortPlayList } from './input/sortPlayList.input';
 @Injectable()
 export class PlayListService {
     constructor(@InjectModel('playlists') private readonly playListModel: Model<PlayList>) { }
-    async getPlayLists(pagination: Pagination): Promise<PlayList[]> {
+    async getPlayLists(pagination: Pagination, sort: sortPlayList): Promise<PlayList[]> {
         const paginationItem = {
             limit: pagination?.limit || 20,
             skip: pagination?.skip || 1
         }
-        return await this.playListModel.find().limit(paginationItem.limit).skip((paginationItem.skip - 1) * (paginationItem.limit));
+        const sortItem = {
+            name: sort?.name,
+            imgUrl: sort?.imgUrl,
+            sscoverImgUrl: sort?.coverImgUrl,
+            Followers: sort?.Followers,
+            createdAt: sort?.createdAt,
+            updatedAt: sort?.updatedAt
+        }
+        return await this.playListModel.find().limit(paginationItem.limit).skip((paginationItem.skip - 1) * (paginationItem.limit)).sort(sortItem);
     }
     async getPlayList(id: string): Promise<PlayList> {
         return this.playListModel.findOne({ _id: id });
