@@ -5,10 +5,6 @@ export class sortPlayList {
     @Field(() => Int)
     readonly name: number
     @Field(() => Int)
-    readonly imgUrl: number
-    @Field(() => Int)
-    readonly coverImgUrl: number
-    @Field(() => Int)
     readonly Followers: number
     @Field(() => Int)
     readonly createdAt: number
