@@ -16,8 +16,6 @@ export class ArtistService {
         }
         const sortItem = {
             name: sort?.name,
-            imgUrl: sort?.imgUrl,
-            coverImgUrl: sort?.coverImgUrl,
             Followers: sort?.Followers ,
             updatedAt:sort?.updatedAt ,
             createdAt:sort?.createdAt

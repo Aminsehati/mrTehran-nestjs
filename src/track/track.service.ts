@@ -15,13 +15,16 @@ export class TrackService {
             skip: pagination?.skip || 1
         }
         const sortItem = {
-            trackName: sort?.trackName,
             like: sort?.like,
             view: sort?.view,
             updatedAt: sort?.updatedAt,
             createdAt: sort?.createdAt
         }
-        return await this.trackModel.find().limit(paginationitem.limit).skip((paginationitem.limit) * (paginationitem.skip - 1)).sort(sortItem);
+        console.log('sort',sort);
+        
+        return await this.trackModel.find().limit(paginationitem.limit).
+            skip((paginationitem.limit) * (paginationitem.skip - 1)).
+            sort(sortItem)
     }
     async getTracksCount(): Promise<number> {
         return await this.trackModel.find().count();
