@@ -7,18 +7,23 @@ import { ArtistModule } from './artist/artist.module';
 import { UploadFileModule } from './uploadFile/uploadFile.module'
 import { graphqlUploadExpress, GraphQLUpload } from 'graphql-upload';
 import { TrackModule } from './track/track.module'
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     PlayLisModule,
     ArtistModule,
     UploadFileModule,
     TrackModule,
+    AuthModule,
+    UserModule,
     GraphQLModule.forRoot({
       uploads: false,
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
+      context: ({ req }) => ({ req })
     }),
-    MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
   ],
 })
 export class AppModule implements NestModule {

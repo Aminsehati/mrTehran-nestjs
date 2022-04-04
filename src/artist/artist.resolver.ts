@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { createArtist } from 'src/artist/input/createArtist.input';
 import { Pagination } from 'src/input/pagination.input';
@@ -13,7 +14,7 @@ export class ArtistResolver {
         try {
             return this.artistService.getArtists(pagination, sort);
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Query(() => Artist)
@@ -21,7 +22,7 @@ export class ArtistResolver {
         try {
             return this.artistService.getArtist(id);
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Query(() => Int)
@@ -29,7 +30,7 @@ export class ArtistResolver {
         try {
             return this.artistService.getArtistsCount()
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Mutation(() => Artist)
@@ -37,7 +38,7 @@ export class ArtistResolver {
         try {
             return this.artistService.createArtist(input);
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Mutation(() => Artist)
@@ -45,7 +46,7 @@ export class ArtistResolver {
         try {
             return this.artistService.updateArtist(id, input);
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Mutation(() => Artist)
@@ -53,7 +54,7 @@ export class ArtistResolver {
         try {
             return this.artistService.deleteArtist(id);
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
     @Mutation(() => Artist)
@@ -61,7 +62,7 @@ export class ArtistResolver {
         try {
             return this.artistService.FollowArtist(id)
         } catch (error) {
-            console.log(error);
+            throw new BadRequestException(error)
         }
     }
 }

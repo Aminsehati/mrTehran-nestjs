@@ -1,0 +1,25 @@
+type Mutation {
+    registerUser(input:registerUserInput!):Token! ,
+    loginUser(input:loginUserInput!):Token! 
+}
+type Token {
+    access_token: String!
+}
+type User {
+    firstName: String , 
+    lastName: String , 
+    isAdmin: Boolean ,
+    username: String , 
+    phoneNumber: String 
+}
+input registerUserInput {
+    phoneNumber: String! ,
+    password: String 
+}
+input loginUserInput {
+    phoneNumber: String! ,
+    password: String 
+}
+type Query {
+  getUserInfo : User 
+}
