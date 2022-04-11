@@ -9,6 +9,8 @@ import { graphqlUploadExpress, GraphQLUpload } from 'graphql-upload';
 import { TrackModule } from './track/track.module'
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
     PlayLisModule,
@@ -23,7 +25,11 @@ import { UserModule } from './user/user.module';
       typePaths: ['./**/*.graphql'],
       context: ({ req }) => ({ req })
     }),
-    MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+    MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../public'),
+      serveRoot: '/public/'
+    }),
   ],
 })
 export class AppModule implements NestModule {

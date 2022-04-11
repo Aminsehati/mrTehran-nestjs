@@ -1,6 +1,6 @@
  scalar DateTime
 type Query {
-    getTracks(pagination:Pagination , sort: sortTrack) : [Track]
+    getTracks(pagination:Pagination , sort: sortTrack , filter : sortFilter ) : [Track]
     getTrack(id:ID!) : Track
     getTracksCount:Int!
 }
@@ -35,6 +35,9 @@ input sortTrack {
     like: Int ,
     createdAt: Int,
     updatedAt: Int,
+}
+input sortFilter {
+    artistID: ID 
 }
 type Mutation {
     createTrack(input : createTrackInput!) : Track ,

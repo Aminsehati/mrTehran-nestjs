@@ -4,13 +4,14 @@ import { track } from './dto/track.dto'
 import { createTrack } from './input/createTrack.input';
 import { Pagination } from '../schema/graphql';
 import { sortTrack } from './input/sortTrack.input';
+import { filterTrack } from './input/filterTrack.input';
 @Resolver()
 export class trackResolver {
     constructor(private readonly trackService: TrackService) { }
     @Query(() => [track])
-    getTracks(@Args('pagination') pagination: Pagination, @Args('sort') sort: sortTrack) {
+    getTracks(@Args('pagination') pagination: Pagination, @Args('sort') sort: sortTrack, @Args('filter') filter: filterTrack) {
         try {
-            return this.trackService.getTracks(pagination, sort);
+            return this.trackService.getTracks(pagination, sort, filter);
         } catch (error) {
             console.log('error', error);
         }

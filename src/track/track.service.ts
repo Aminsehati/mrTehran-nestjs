@@ -6,10 +6,12 @@ import { createTrack } from "./input/createTrack.input";
 import { Artist } from '../artist/interface/artist.interface'
 import { Pagination } from '../schema/graphql';
 import { sortTrack } from './input/sortTrack.input';
+import { filterTrack } from './input/filterTrack.input';
+import { log } from "console";
 @Injectable()
 export class TrackService {
     constructor(@InjectModel('tracks') private readonly trackModel: Model<Track>, @InjectModel('artists') private readonly artistModel: Model<Artist>) { }
-    async getTracks(pagination: Pagination, sort: sortTrack): Promise<Track[]> {
+    async getTracks(pagination: Pagination, sort: sortTrack, filter: filterTrack): Promise<Track[]> {
         const paginationitem = {
             limit: pagination?.limit || 20,
             skip: pagination?.skip || 1
@@ -20,8 +22,19 @@ export class TrackService {
             updatedAt: sort?.updatedAt,
             createdAt: sort?.createdAt
         }
-        console.log('sort',sort);
-        
+        const artistID = filter.artistID;
+        if (artistID) {
+            return await this.trackModel.find(artistID && {
+                artists: {
+                    $elemMatch: {
+                        _id: artistID
+                    }
+                }
+            }).limit(paginationitem.limit).
+                skip((paginationitem.limit) * (paginationitem.skip - 1)).
+                sort(sortItem)
+        }
+
         return await this.trackModel.find().limit(paginationitem.limit).
             skip((paginationitem.limit) * (paginationitem.skip - 1)).
             sort(sortItem)
