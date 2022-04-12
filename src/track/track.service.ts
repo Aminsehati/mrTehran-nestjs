@@ -22,12 +22,11 @@ export class TrackService {
             updatedAt: sort?.updatedAt,
             createdAt: sort?.createdAt
         }
-        const artistID = filter.artistID;
-        if (artistID) {
-            return await this.trackModel.find(artistID && {
+        if (filter.artistID) {
+            return await this.trackModel.find(filter.artistID && {
                 artists: {
                     $elemMatch: {
-                        _id: artistID
+                        _id: filter.artistID
                     }
                 }
             }).limit(paginationitem.limit).
