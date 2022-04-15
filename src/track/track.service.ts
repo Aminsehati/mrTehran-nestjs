@@ -22,7 +22,7 @@ export class TrackService {
             updatedAt: sort?.updatedAt,
             createdAt: sort?.createdAt
         }
-        if (filter.artistID) {
+        if (filter?.artistID) {
             return await this.trackModel.find(filter.artistID && {
                 artists: {
                     $elemMatch: {

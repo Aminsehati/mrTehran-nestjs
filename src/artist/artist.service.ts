@@ -15,7 +15,6 @@ export class ArtistService {
             skip: pagination?.skip || 1
         }
         const sortItem = {
-            name: sort?.name,
             Followers: sort?.Followers ,
             updatedAt:sort?.updatedAt ,
             createdAt:sort?.createdAt

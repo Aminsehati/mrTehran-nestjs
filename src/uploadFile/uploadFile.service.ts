@@ -10,9 +10,10 @@ export class UploadFileService {
             filename,
             createReadStream
         } = await file[0].file;
-        console.log('file', file[0].file);
         const myfile = await createReadStream();
-        const locationFile = path.join(__dirname, `../../../src/public/images/${filename}`)
+        const locationFile = path.join(__dirname, `../../../public/images/${filename}`);
+        console.log(locationFile);
+
         await myfile.pipe(createWriteStream(locationFile));
         return {
             url: filename
@@ -24,7 +25,8 @@ export class UploadFileService {
             createReadStream
         } = await file[0].file;
         const myfile = await createReadStream();
-        const locationFile = path.join(__dirname, `../../../src/public/audio/${filename}`)
+        const locationFile = path.join(__dirname, `../../../public/audio/${filename}`);
+
         await myfile.pipe(createWriteStream(locationFile));
         return {
             url: filename
