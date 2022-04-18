@@ -39,7 +39,6 @@ export class PlayListResolver {
     @Mutation(() => PlayList)
     deletePlayList(@Args('id') id: string) {
         try {
-            console.log('id playList', id);
             return this.playListService.deletePlayList(id);
         } catch (error) {
             console.log(error);

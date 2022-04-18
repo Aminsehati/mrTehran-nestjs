@@ -10,8 +10,6 @@ export class UserService {
     return await this.usersModel.findOne({ phoneNumber });
   }
   async findOneByID(id:string) {
-    console.log('id',id);
-    
     return this.usersModel.findOne({ _id: id })
   }
   async createUser(input: createUser) {

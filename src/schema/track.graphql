@@ -1,6 +1,6 @@
  scalar DateTime
 type Query {
-    getTracks(pagination:Pagination , sort: sortTrack , filter : sortFilter ) : [Track]
+    getTracks(pagination:Pagination , sort: sortTrack , filter : filterTrack ) : [Track]
     getTrack(id:ID!) : Track
     getTracksCount:Int!
 }
@@ -12,6 +12,8 @@ type Track {
     view: Int ,
     like: Int ,
     artists: [Artist],
+    playlists:[PlayList],
+    hasPodcast: Boolean ,
     createdAt:DateTime,
     updatedAt:DateTime,
 }
@@ -19,15 +21,17 @@ input createTrackInput {
     imgUrl: String! ,
     audioUrl: String! ,
     trackName: String! ,
-    artists:[ID!]
+    artists:[ID!],
+    haPodcast: Boolean ,
+    playlists:[ID]!
 }
 input updateTrackInput {
     imgUrl: String! ,
     audioUrl: String! ,
     trackName: String! ,
-    view: Int! ,
-    like:Int! ,
-    artists:[ID!]
+    artists:[ID!],
+    playlists:[ID]!,
+    haPodcast: Boolean ,
 }
 input sortTrack {
     trackName: Int ,
@@ -35,13 +39,14 @@ input sortTrack {
     like: Int ,
     createdAt: Int,
     updatedAt: Int,
+    hasPodcast: Boolean  
 }
-input sortFilter {
+input filterTrack {
     artistID: ID 
 }
 type Mutation {
     createTrack(input : createTrackInput!) : Track ,
-    updateTrack(input : updateTrackInput) : Track ,
+    updateTrack(id:String , input : updateTrackInput) : Track ,
     deleteTrack(id:ID!): Track , 
     likeTrack(id:ID!): Track ,
     viewTrack(id:ID!): Track ,

@@ -23,7 +23,6 @@ export const trackSchema = new mongoose.Schema({
     artists: [{
         _id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Actor"
         },
         name: {
             type: String
@@ -37,7 +36,30 @@ export const trackSchema = new mongoose.Schema({
         Followers: {
             type: Number,
         }
-    }]
+    }],
+    playlists: [
+        {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+            },
+            name: {
+                type: String
+            },
+            imgUrl: {
+                type: String,
+            },
+            coverImgUrl: {
+                type: String,
+            },
+            Followers: {
+                type: Number,
+            }
+        }
+    ],
+    hasPodcast: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true
 })

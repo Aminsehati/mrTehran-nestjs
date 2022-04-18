@@ -12,4 +12,6 @@ export class sortTrack {
     readonly createdAt: number
     @Field(() => Int)
     readonly updatedAt: number
+    @Field(() => Boolean)
+    readonly hasPodcast: boolean
 }

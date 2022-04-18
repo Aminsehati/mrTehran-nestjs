@@ -1,6 +1,8 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Artist } from '../../artist/dto/artist.dto'
 
+import { PlayList } from '../../playList/dto/playList.dto'
+
 @ObjectType()
 export class track {
     @Field()
@@ -15,4 +17,6 @@ export class track {
     readonly like: number
     @Field(() => [Artist])
     artists: Artist[]
+    @Field(() => [PlayList])
+    playlists: PlayList[]
 }

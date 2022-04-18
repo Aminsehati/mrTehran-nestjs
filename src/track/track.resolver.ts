@@ -5,6 +5,7 @@ import { createTrack } from './input/createTrack.input';
 import { Pagination } from '../schema/graphql';
 import { sortTrack } from './input/sortTrack.input';
 import { filterTrack } from './input/filterTrack.input';
+import { updateTrack } from './input/updateTrack.input'
 @Resolver()
 export class trackResolver {
     constructor(private readonly trackService: TrackService) { }
@@ -45,6 +46,14 @@ export class trackResolver {
             return this.trackService.deleteTrack(id);
         } catch (error) {
             console.log('error', error);
+        }
+    }
+    @Mutation(() => track)
+    updateTrack(@Args('id') id: string, @Args('input') input: updateTrack) {
+        try {
+            return this.trackService.updateTrack(id, input)
+        } catch (error) {
+            ////
         }
     }
 

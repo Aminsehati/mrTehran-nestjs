@@ -1,7 +1,7 @@
 import { Field, ID, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
-export class createTrack {
+export class updateTrack {
     @Field()
     imgUrl: string
     @Field()
