@@ -42,7 +42,8 @@ input sortTrack {
     hasPodcast: Boolean  
 }
 input filterTrack {
-    artistID: ID 
+    artistID: ID ,
+    playlistID : ID ,
 }
 type Mutation {
     createTrack(input : createTrackInput!) : Track ,

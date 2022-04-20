@@ -37,7 +37,33 @@ export class TrackService {
                 skip((paginationitem.limit) * (paginationitem.skip - 1)).
                 sort(sortItem)
         }
-
+        if (filter?.playlistID) {
+            return await this.trackModel.find(filter.playlistID && {
+                playlists: {
+                    $elemMatch: {
+                        _id: filter.playlistID
+                    }
+                }
+            }).limit(paginationitem.limit).
+                skip((paginationitem.limit) * (paginationitem.skip - 1)).
+                sort(sortItem)
+        }
+        if (filter?.playlistID && filter?.artistID) {
+            return await this.trackModel.find({
+                playlists: {
+                    $elemMatch: {
+                        _id: filter.playlistID
+                    }
+                },
+                artists: {
+                    $elemMatch: {
+                        _id: filter.playlistID
+                    }
+                }
+            }).limit(paginationitem.limit).
+                skip((paginationitem.limit) * (paginationitem.skip - 1)).
+                sort(sortItem)
+        }
         return await this.trackModel.find({ hasPodcast }).limit(paginationitem.limit).
             skip((paginationitem.limit) * (paginationitem.skip - 1)).
             sort(sortItem)
@@ -75,7 +101,7 @@ export class TrackService {
             artists = await this.artistModel.findOne({ _id: input.artists })
         }
         if (input.playlists.length) {
-            
+
             playlists = await this.playlistModel.findOne({ _id: input.playlists })
         }
 
