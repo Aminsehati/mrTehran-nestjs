@@ -9,6 +9,7 @@ import { graphqlUploadExpress, GraphQLUpload } from 'graphql-upload';
 import { TrackModule } from './track/track.module'
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { AlbumModule } from './album/album.module'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 @Module({
@@ -19,6 +20,7 @@ import { join } from 'path';
     TrackModule,
     AuthModule,
     UserModule,
+    AlbumModule,
     GraphQLModule.forRoot({
       uploads: false,
       driver: ApolloDriver,
