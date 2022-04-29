@@ -63,6 +63,6 @@ export class albumResolver {
 
     @Mutation(() => album)
     likeTrackAlbum(@Args('albumID') albumID: string, @Args('trackID') trackID: string){
-        return this.albumService.likeTrackAlbum();
+        return this.albumService.likeTrackAlbum(albumID,trackID);
     }
 }
