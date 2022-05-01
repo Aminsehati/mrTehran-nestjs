@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 import { AlbumModule } from './album/album.module'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { TracksAlbumModule } from './trackAlbum/trackAlbum.module';
 @Module({
   imports: [
     PlayLisModule,
@@ -21,6 +22,7 @@ import { join } from 'path';
     AuthModule,
     UserModule,
     AlbumModule,
+    TracksAlbumModule,
     GraphQLModule.forRoot({
       uploads: false,
       driver: ApolloDriver,

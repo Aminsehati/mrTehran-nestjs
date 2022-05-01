@@ -25,15 +25,6 @@ export class albumResolver {
         return this.albumService.getAlbumsCount()
     }
 
-    @Query(() => album)
-    getTracksAlbum(@Args('albumID') albumID: string) {
-        return this.albumService.getTracksAlbum(albumID);
-    }
-
-    @Query()
-    getTrackAlbum(@Args('albumID') albumID: string, @Args('trackID') trackID: string) {
-        return this.albumService.getTrackAlbum(albumID, trackID);
-    }
 
 
     @Mutation(() => album)
@@ -49,20 +40,5 @@ export class albumResolver {
     @Mutation(() => album)
     deleteAlbum(@Args('id') id: string) {
         return this.albumService.deleteAlbum(id)
-    }
-
-    @Mutation(() => album)
-    createTrackAlbum(@Args('input') input: albumTrackInput) {
-        return this.albumService.createTrackAlbum(input);
-    }
-
-    @Mutation(() => album)
-    viewTrackAlbum(@Args('albumID') albumID: string, @Args('trackID') trackID: string) {
-        return this.albumService.viewTrackAlbum(albumID, trackID);
-    }
-
-    @Mutation(() => album)
-    likeTrackAlbum(@Args('albumID') albumID: string, @Args('trackID') trackID: string){
-        return this.albumService.likeTrackAlbum(albumID,trackID);
     }
 }

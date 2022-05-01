@@ -1,5 +1,5 @@
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, ObjectId } from 'mongoose';
+import { Model } from 'mongoose';
 import { Album } from './interface/album.interface'
 import { Artist } from '../artist/interface/artist.interface'
 import { createAlbumInput } from './input/createAlbum.input';
@@ -22,22 +22,6 @@ export class AlbumServie {
     }
     async getAlbumsCount() {
         return this.albumModel.find().count();
-    }
-    async getTracksAlbum(albumID: string) {
-        const AlbumItem = await this.albumModel.findOne({ _id: albumID });
-        const tracks = AlbumItem?.tracks || []
-        return tracks
-    }
-    async getTrackAlbum(albumID: string, trackID: string) {
-        const item = this.albumModel.findOne({
-            tracks: {
-                $elemMatch: {
-                    _id: trackID
-                }
-            }
-        });
-        console.log(item);
-        return item
     }
 
     async createAlbum(input: createAlbumInput): Promise<Album> {
@@ -64,31 +48,5 @@ export class AlbumServie {
     }
     async deleteAlbum(id: string) {
         return await this.albumModel.findOneAndDelete({ _id: id }, { new: true })
-    }
-    async createTrackAlbum(input: albumTrackInput) {
-        const newTrack = {
-            trackName: input.trackName,
-            audioUrl: input.audioUrl,
-            // _id: uuidv4()
-        }
-        return await this.albumModel.findOneAndUpdate({ _id: input.albumID }, {
-            $addToSet: {
-                tracks: newTrack
-            }
-        }, { new: true })
-    }
-    async viewTrackAlbum(albumID: string, trackID: string) {
-        return await this.albumModel.findOneAndUpdate({ _id: albumID, "tracks._id": trackID }, {
-            $inc: {
-                "tracks.$.view": 1
-            }
-        }, { new: true })
-    }
-    async likeTrackAlbum(albumID: string, trackID: string) {
-        return await this.albumModel.findOneAndUpdate({ _id: albumID, "tracks._id": trackID }, {
-            $inc: {
-                "tracks.$.like": 1
-            }
-        }, { new: true })
     }
 }

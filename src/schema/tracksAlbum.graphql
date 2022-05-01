@@ -1,0 +1,40 @@
+ scalar DateTime
+type Query {
+    getTracksAlbum(pagination:Pagination , sort:SortTrackAlbum , filter:FilterTrackAlbum):[TrackAlbum] ,
+    getTrackAlbum(id:String!) : TrackAlbum ,
+    getTracksAlbumCount: Int!
+}
+type Mutation {
+    createTrackAlbum(input:createTrackAlbumInput!):TrackAlbum ,
+    updateTrackAlbum(id:String!,input:updateTrackAlbumInput!):TrackAlbum,
+    deleteTrackAlbum(id:String!):TrackAlbum ,
+    viewTrackAlbum(id:String!):TrackAlbum ,
+    likeTrackAlbum(id:String!):TrackAlbum
+}
+type TrackAlbum {
+    _id: String ,
+    albumID: String ,
+    trackName: String ,
+    audioUrl: String ,
+    view: Int ,
+    like: Int ,
+    createdAt: DateTime,
+    updatedAt: DateTime,
+}
+input createTrackAlbumInput {
+    trackName: String! ,
+    audioUrl: String! ,
+    albumID: String! ,
+}
+input updateTrackAlbumInput {
+    trackName: String! ,
+    audioUrl: String! ,
+    albumID: String! ,
+}
+input SortTrackAlbum {
+    view: Int ,
+    like: Int
+}
+input FilterTrackAlbum {
+    artists: [ID!]
+}

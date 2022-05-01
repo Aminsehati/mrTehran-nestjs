@@ -3,43 +3,25 @@ type Query {
     getAlbums(pagination:Pagination) : [Album] ,
     getAlbum(id: ID!) : Album ,
     getAlbumsCount: Int! ,
-    getTracksAlbum(albumID:String!): [TrackAlbum] ,
-    getTrackAlbum(albumID:String! , trackID:String!):Album
 }
 type Mutation {
     createAlbum(input:createAlbumInput!):Album ,
     updateAlbum(id:String ,input:updateAlbumInput!):Album ,
     deleteAlbum(id:String) : Album ,
-    createTrackAlbum(input:createTrackAlbumInput!):Album ,
-    viewTrackAlbum(albumID:String! , trackID:String!) : Album ,
-    likeTrackAlbum(albumID:String! , trackID:String!) : Album
 }
 type Album {
     _id: String ,
     name: String ,
     imgUrl:String ,
     artists:[Artist],
-    tracks: [TrackAlbum]
-}
-type TrackAlbum {
-    _id:String ,
-    trackName: String ,
-    audioUrl : String ,
-    view: Int ,
-    like: Int , 
-}
-input createAlbumInput {
-    name: String! ,
-    artists: [ID!]!,
-    imgUrl: String! , 
 }
 input updateAlbumInput {
     name: String! ,
     artists: [ID!]!,
     imgUrl: String! , 
 }
-input createTrackAlbumInput {
-    albumID:ID!,
-    trackName: String! ,
-    audioUrl: String! ,
+input createAlbumInput {
+    name: String! ,
+    artists: [ID!]!,
+    imgUrl: String! , 
 }

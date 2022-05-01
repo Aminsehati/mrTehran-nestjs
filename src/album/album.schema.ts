@@ -28,30 +28,6 @@ export const albumSchema = new mongoose.Schema({
             }
         }
     ],
-    tracks: [
-        {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                default:()=>{
-                    return new mongoose.Types.ObjectId().toString()
-                }
-            },
-            audioUrl: {
-                type: String,
-            },
-            trackName: {
-                type: String,
-            },
-            view: {
-                type: Number,
-                default: 0
-            },
-            like: {
-                type: Number,
-                default: 0
-            }
-        }
-    ]
 }, {
     timestamps: true
 })
