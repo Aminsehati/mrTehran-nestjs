@@ -1,12 +1,12 @@
  scalar DateTime
 type Query {
     getTracksAlbum(pagination:Pagination , sort:SortTrackAlbum , filter:FilterTrackAlbum):[TrackAlbum] ,
-    getTrackAlbum(id:String!) : TrackAlbum ,
+    getTrackAlbum(id:ID!) : TrackAlbum ,
     getTracksAlbumCount: Int!
 }
 type Mutation {
     createTrackAlbum(input:createTrackAlbumInput!):TrackAlbum ,
-    updateTrackAlbum(id:String!,input:updateTrackAlbumInput!):TrackAlbum,
+    updateTrackAlbum(id:ID!,input:updateTrackAlbumInput!):TrackAlbum,
     deleteTrackAlbum(id:String!):TrackAlbum ,
     viewTrackAlbum(id:String!):TrackAlbum ,
     likeTrackAlbum(id:String!):TrackAlbum
@@ -36,5 +36,6 @@ input SortTrackAlbum {
     like: Int
 }
 input FilterTrackAlbum {
-    artists: [ID!]
+    artists: [ID!] ,
+    albumID: ID!
 }

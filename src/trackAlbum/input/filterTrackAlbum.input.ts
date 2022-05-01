@@ -4,4 +4,6 @@ import { InputType, Field, ID } from '@nestjs/graphql';
 export class filterTrackAlbum {
     @Field(() => [ID])
     artists: string[]
+    @Field(() => ID)
+    albumID: string
 }

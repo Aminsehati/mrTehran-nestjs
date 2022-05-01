@@ -55,7 +55,7 @@ export class TrackAlbumService {
             });
             return await this.tracksAlbumModel.find({ albumID: items._id }).limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
         }
-        return await this.tracksAlbumModel.find().limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
+        return await this.tracksAlbumModel.find({ albumID: filter.albumID }).limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
     }
     async getTracksAlbumCount() {
         return await this.tracksAlbumModel.find().count();
