@@ -1,6 +1,6 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-@ObjectType()
-export class updateTrackInput {
+import { Field, ID, ObjectType , InputType } from '@nestjs/graphql';
+@InputType()
+export class updateAlbumInput {
     @Field()
     readonly name: string
     @Field()

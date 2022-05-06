@@ -1,8 +1,7 @@
 import { Args, Int, Mutation, Resolver, Query } from "@nestjs/graphql";
 import { AlbumServie } from './album.service';
 import { createAlbumInput } from './input/createAlbum.input';
-import { updateTrackInput } from './input/updateAlbum.input';
-import { albumTrackInput } from './input/albumTrack.input'
+import { updateAlbumInput } from './input/updateAlbum.input';
 import { album } from './dto/album.dto'
 import { Pagination } from '../input/pagination.input';
 
@@ -33,7 +32,7 @@ export class albumResolver {
     }
 
     @Mutation(() => album)
-    updateAlbum(@Args('input') input: updateTrackInput, @Args('id') id: string) {
+    updateAlbum(@Args('input') input: updateAlbumInput, @Args('id') id: string) {
         return this.albumService.updateAlbum(id, input);
     }
 

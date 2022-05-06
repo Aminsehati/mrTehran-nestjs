@@ -22,4 +22,4 @@ export const trackAlbum = new mongoose.Schema({
     }
 }, {
     timestamps: true
-})
+});

@@ -6,8 +6,8 @@ type Query {
 }
 type Mutation {
     createAlbum(input:createAlbumInput!):Album ,
-    updateAlbum(id:String ,input:updateAlbumInput!):Album ,
-    deleteAlbum(id:String) : Album ,
+    updateAlbum(id:String! ,input:updateAlbumInput!):Album ,
+    deleteAlbum(id:String!) : Album ,
 }
 type Album {
     _id: String ,

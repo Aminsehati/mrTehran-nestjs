@@ -53,8 +53,17 @@ export class TrackAlbumService {
             const items = await this.albumModel.findOne({
                 "artists._id": filter.artists
             });
-            return await this.tracksAlbumModel.find({ albumID: items._id }).limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
+            return await this.tracksAlbumModel.find({ albumID: items._id }).
+                limit(paginationItem.limit).
+                skip((paginationItem.limit) * (paginationItem.skip - 1)).
+                sort(sortItem);
         }
+        const test = await this.tracksAlbumModel.find({ albumID: filter.albumID })
+            .limit(paginationItem.limit).
+            skip((paginationItem.limit) * (paginationItem.skip - 1)).
+            sort(sortItem).
+            populate('albumID')
+        console.log(test);
         return await this.tracksAlbumModel.find({ albumID: filter.albumID }).limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
     }
     async getTracksAlbumCount() {

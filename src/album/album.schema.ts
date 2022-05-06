@@ -10,22 +10,7 @@ export const albumSchema = new mongoose.Schema({
     },
     artists: [
         {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-            },
-            name: {
-                type: String,
-            },
-            imgUrl: {
-                type: String,
-            },
-            coverImgUrl: {
-                type: String,
-            },
-            Followers: {
-                type: Number,
-                default: 0
-            }
+            type: mongoose.Schema.Types.ObjectId, ref: 'artists'
         }
     ],
 }, {
