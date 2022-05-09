@@ -38,6 +38,7 @@
     "crypto": "^1.0.1",
     "graphql": "^16.3.0",
     "graphql-upload": "^13.0.0",
+    "lodash": "^4.17.21",
     "mongoose": "^6.2.8",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",

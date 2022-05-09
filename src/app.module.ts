@@ -13,6 +13,7 @@ import { AlbumModule } from './album/album.module'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TracksAlbumModule } from './trackAlbum/trackAlbum.module';
+import { get } from 'lodash'
 @Module({
   imports: [
     PlayLisModule,
@@ -27,7 +28,12 @@ import { TracksAlbumModule } from './trackAlbum/trackAlbum.module';
       uploads: false,
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
-      context: ({ req }) => ({ req })
+      context: ({ req, res }) => {
+        return {
+          req,
+          res
+        }
+      }
     }),
     MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
     ServeStaticModule.forRoot({

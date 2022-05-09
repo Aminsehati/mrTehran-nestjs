@@ -4,8 +4,6 @@ import { registerUser } from './input/registerUser.inout';
 import { Token } from './entities/token.entities';
 import { loginUser } from './input/loginUser.input';
 import { User } from '../user/entities/user.entity'
-import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from './jwt-auth.guard';
 @Resolver()
 export class AuthResolver {
     constructor(private readonly authService: AuthService) { }
@@ -27,7 +25,6 @@ export class AuthResolver {
         }
     }
     @Query(() => User)
-    @UseGuards(JwtAuthGuard)
     async getUserInfo(@Context() context) {
         try {
             return this.authService.getUserInfo();
