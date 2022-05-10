@@ -13,7 +13,7 @@ type Mutation {
 }
 type TrackAlbum {
     _id: String ,
-    albumID: String ,
+    album: Album ,
     trackName: String ,
     audioUrl: String ,
     view: Int ,
@@ -37,5 +37,5 @@ input SortTrackAlbum {
 }
 input FilterTrackAlbum {
     artists: [ID!] ,
-    albumID: ID!
+    albumID: ID
 }

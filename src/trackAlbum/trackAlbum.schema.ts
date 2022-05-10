@@ -8,7 +8,7 @@ export const trackAlbum = new mongoose.Schema({
         type: String,
         required: true
     },
-    albumID: {
+    album: {
         type: mongoose.Types.ObjectId,
         ref: "albums"
     },

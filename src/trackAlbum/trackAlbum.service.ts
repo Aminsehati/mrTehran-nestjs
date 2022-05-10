@@ -51,22 +51,55 @@ export class TrackAlbumService {
         }
         if (filter?.artists && filter.artists.length) {
             const items = await this.albumModel.findOne({
-                "artists._id": filter.artists
+                artists: filter.artists
             });
             return await this.tracksAlbumModel.find({ albumID: items._id }).
                 limit(paginationItem.limit).
                 skip((paginationItem.limit) * (paginationItem.skip - 1)).
-                sort(sortItem);
+                sort(sortItem)
+                .populate({
+                    path: 'album',
+                    populate: {
+                        path: 'artists',
+                        model: 'artists'
+                    }
+                });
         }
         if (filter?.albumID && filter?.albumID.length) {
-            return await this.tracksAlbumModel.find({ albumID: filter.albumID }).limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
+            return await this.tracksAlbumModel.find({ albumID: filter.albumID }).
+                limit(paginationItem.limit).
+                skip((paginationItem.limit) * (paginationItem.skip - 1)).
+                sort(sortItem)
+                .populate({
+                    path: 'album',
+                    populate: {
+                        path: 'artists',
+                        model: 'artists'
+                    }
+                });
         }
-        return await this.tracksAlbumModel.find().limit(paginationItem.limit).skip((paginationItem.limit) * (paginationItem.skip - 1)).sort(sortItem);
+        return await this.tracksAlbumModel.find().
+            limit(paginationItem.limit).
+            skip((paginationItem.limit) * (paginationItem.skip - 1)).
+            sort(sortItem).populate({
+                path: 'album',
+                populate: {
+                    path: 'artists',
+                    model: 'artists'
+                }
+            });
     }
     async getTracksAlbumCount() {
         return await this.tracksAlbumModel.find().count();
     }
     async getTrackAlbum(id: string) {
-        return await this.tracksAlbumModel.findOne({ _id: id });
+        return await this.tracksAlbumModel.findOne({ _id: id }).
+            populate({
+                path: 'album',
+                populate: {
+                    path: 'artists',
+                    model: 'artists'
+                }
+            });
     }
 }

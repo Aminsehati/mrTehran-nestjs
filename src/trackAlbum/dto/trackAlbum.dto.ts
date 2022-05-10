@@ -6,5 +6,5 @@ export class trackAlbum {
     @Field()
     readonly audioUrl: string
     @Field(() => ID)
-    readonly albumID: string
+    readonly album: string
 }
