@@ -35,7 +35,7 @@ import { get } from 'lodash'
         }
       }
     }),
-    MongooseModule.forRoot('mongodb+srv://root:El0o1OLJQRIsNOvp@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://root:S6EwNyUFL624JCb1@mrtehran.xc53v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '../public'),
       serveRoot: '/public/'
